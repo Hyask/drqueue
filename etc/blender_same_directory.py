@@ -39,7 +39,7 @@ context = scn.getRenderingContext()
 curframe = int(os.getenv("curframe"))
 context.startFrame(curframe)
 context.endFrame(curframe)
-print("curframe: " + str(curframe)) 
+print("curframe: " + str(curframe))
 
 # get scenefile from args
 scenefile = sys.argv[2]

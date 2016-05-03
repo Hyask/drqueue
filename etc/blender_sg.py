@@ -1,14 +1,14 @@
 #
 # THIS IS A PYTHON SCRIPT FILE
-# 
+#
 # Default configuration for Blender script generator
-# 
+#
 # Python variables
 # SCENE, RENDER_TYPE
-# 
+#
 # shell variables
 # DRQUEUE_BLOCKSIZE, DRQUEUE_COMPID, DRQUEUE_ENDFRAME, DRQUEUE_ETC, DRQUEUE_FRAME,
-# DRQUEUE_JOBID, DRQUEUE_JOBNAME, DRQUEUE_OS, DRQUEUE_OWNER, DRQUEUE_PADFRAME, 
+# DRQUEUE_JOBID, DRQUEUE_JOBNAME, DRQUEUE_OS, DRQUEUE_OWNER, DRQUEUE_PADFRAME,
 # DRQUEUE_PADFRAMES, DRQUEUE_STARTFRAME, DRQUEUE_STEPFRAME
 #
 
@@ -56,7 +56,7 @@ if BLOCK > DRQUEUE_ENDFRAME:
 ENGINE_PATH="blender"
 
 if RENDER_TYPE == "animation":
-	command = "curframe="+str(DRQUEUE_FRAME)+" "+ENGINE_PATH+" -b "+SCENE+" -P "+DRQUEUE_ETC+"/blender_same_directory.py"
+	command = ENGINE_PATH+" -b "+SCENE+" -f "+str(DRQUEUE_FRAME)+" -o //render/render_"
 else:
 	command = "curpart="+str(DRQUEUE_FRAME)+" maxparts="+str(DRQUEUE_ENDFRAME)+" "+ENGINE_PATH+" -b "+SCENE+" -P "+DRQUEUE_ETC+"/blender_region_rendering.py"
 
@@ -76,7 +76,7 @@ else:
 	#if DRQUEUE_OS != "WINDOWS" then:
 	# The frame was rendered properly
 	# We don't know the output image name. If we knew we could set this correctly
-	# chown_block RF_OWNER RD/IMAGE DRQUEUE_FRAME BLOCK 
+	# chown_block RF_OWNER RD/IMAGE DRQUEUE_FRAME BLOCK
 
 	# change userid and groupid
 	#chown 1002:1004 $SCENE:h/*
